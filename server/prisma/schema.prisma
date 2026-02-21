@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Company {
+  id        Int      @id @default(autoincrement())
+  name      String
+  industry  String
+  revenue   Float
+  createdAt DateTime @default(now())
+}
+
+model SalesRecord {
+  id         Int      @id @default(autoincrement())
+  region     String
+  product    String
+  amount     Float
+  quantity   Int
+  saleDate   DateTime
+}
