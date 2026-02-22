@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl"]
 }
 
 datasource db {
@@ -15,10 +16,10 @@ model Company {
 }
 
 model SalesRecord {
-  id         Int      @id @default(autoincrement())
-  region     String
-  product    String
-  amount     Float
-  quantity   Int
-  saleDate   DateTime
+  id       Int      @id @default(autoincrement())
+  region   String
+  product  String
+  amount   Float
+  quantity Int
+  saleDate DateTime
 }
