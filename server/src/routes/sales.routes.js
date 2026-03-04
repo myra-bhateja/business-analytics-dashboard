@@ -33,5 +33,16 @@ router.post('/', async (req, res) => {
     res.status(500).json({ error: err.message })
   }
 })
+//POST
+router.post("/", async (req, res) => {
+  try {
+    const sale = await prisma.salesRecord.create({
+      data: req.body,
+    });
+    res.json(sale);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 export default router

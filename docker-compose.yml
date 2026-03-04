@@ -22,6 +22,8 @@ services:
       - postgres
     env_file:
       - ./server/.env
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/businessdb
 
   frontend:
     build: ./client
