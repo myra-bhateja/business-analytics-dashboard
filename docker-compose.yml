@@ -24,6 +24,8 @@ services:
       - ./server/.env
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/businessdb
+    volumes:
+      - ./server/src:/app/src
 
   frontend:
     build: ./client
