@@ -4,15 +4,15 @@ import cors from "cors"
 console.log("Server starting...")
 
 import companyRoutes from './routes/company.routes.js'
-//import salesRoutes from './routes/sales.routes.js'
+import salesRoutes from './routes/sales.routes.js'
 
 import analyticsRoutes from "./routes/analytics.js";
 //import dashboardRoutes from "./routes/dashboard.routes.js";
 
-//import uploadRoutes from "./routes/upload.js";
+import uploadRoutes from "./routes/upload.js";
 
-//import aiRoutes from "./routes/ai.js";
-//import chatRoutes from "./routes/chat.js";
+import aiRoutes from "./routes/ai.js";
+import chatRoutes from "./routes/chat.js";
 
 
 const app = express()
@@ -22,16 +22,15 @@ app.use(express.json())
 
 // ROUTES
 app.use('/api/companies', companyRoutes)
-//app.use('/api/sales', salesRoutes)
+app.use('/api/sales', salesRoutes)
 
 app.use("/api/analytics", analyticsRoutes)
 //app.use("/api/dashboard", dashboardRoutes)
-
-//app.use("/api/upload", uploadRoutes)
+app.use("/api/upload", uploadRoutes)
 
 // AI routes
-//app.use("/api/ai", aiRoutes)
-//app.use("/api/ai", chatRoutes)
+app.use("/api/ai", aiRoutes)
+app.use("/api/ai", chatRoutes)
 
 app.get("/", (req, res) => {
   res.send("API running")

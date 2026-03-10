@@ -1,39 +1,37 @@
 import express from "express";
 import prisma from "../prisma.js";
-import OpenAI from "openai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const router = express.Router();
-
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-});
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 router.post("/chat", async (req, res) => {
+  try {
+    const userQuestion = req.body.question;
+    const salesData = await prisma.salesRecord.findMany();
 
-  const userQuestion = req.body.question;
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-  const salesData = await prisma.salesRecord.findMany();
+    const prompt = `
+You are a business analytics assistant.
 
-  const prompt = `
-  You are a business analytics assistant.
+Here is the sales dataset:
+${JSON.stringify(salesData)}
 
-  Here is the sales dataset:
-  ${JSON.stringify(salesData)}
+Answer the user's question clearly.
 
-  Answer the user's question clearly.
+Question: ${userQuestion}
+`;
 
-  Question: ${userQuestion}
-  `;
+    const result = await model.generateContent(prompt);
+    const text = result.response.text();
 
-  const response = await client.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [{ role: "user", content: prompt }]
-  });
+    res.json({ answer: text });
 
-  res.json({
-    answer: response.choices[0].message.content
-  });
-
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "AI chat failed" });
+  }
 });
 
 export default router;

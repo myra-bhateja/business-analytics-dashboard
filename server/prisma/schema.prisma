@@ -21,6 +21,6 @@ model SalesRecord {
   region   String
   product  String
   amount   Float
-  quantity Int
+  quantity Int      @default(0)
   saleDate DateTime
 }

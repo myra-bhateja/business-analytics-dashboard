@@ -24,6 +24,7 @@ services:
       - ./server/.env
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/businessdb
+      - GEMINI_API_KEY=AIzaSyDxaJLSoCFovqSc5cxbnVc6Is2W-1_kS9A
     volumes:
       - ./server/src:/app/src
 
