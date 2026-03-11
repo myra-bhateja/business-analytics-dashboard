@@ -40,14 +40,27 @@ export default function Login({ onLogin }) {
           <div className="login-logo">BA</div>
           <div className="login-brand-text">
             <div className="login-brand-name">Business Analytics</div>
-            <div className="login-brand-sub">Enterprise Dashboard</div>
+            <div className="login-brand-sub">Enterprise Platform</div>
           </div>
         </div>
+
         <div className="login-hero">
-          <h1 className="login-hero-title">Data-driven decisions start here</h1>
-          <p className="login-hero-sub">Upload, analyze, and visualize your business data with AI-powered insights.</p>
+          <h1 className="login-hero-title">
+            Data that<br />
+            <span>drives</span><br />
+            decisions.
+          </h1>
+          <p className="login-hero-sub">
+            Upload, analyze, and visualize your business<br />
+            data with AI-powered insights.
+          </p>
           <div className="login-features">
-            {['Real-time analytics', 'AI business insights', 'Interactive data editor', 'CSV upload support'].map(f => (
+            {[
+              'Real-time sales analytics',
+              'AI-powered business insights',
+              'Interactive data editor',
+              'CSV upload support'
+            ].map(f => (
               <div key={f} className="login-feature">
                 <div className="login-feature-dot" />
                 {f}
@@ -55,22 +68,36 @@ export default function Login({ onLogin }) {
             ))}
           </div>
         </div>
+
+        <div style={{ fontFamily: 'var(--mono)', fontSize: '10px', color: 'var(--text-dim)', letterSpacing: '0.1em' }}>
+          BUSINESS ANALYTICS DASHBOARD — {new Date().getFullYear()}
+        </div>
       </div>
 
       <div className="login-right">
         <div className="login-card">
           <div className="login-card-header">
             <h2 className="login-card-title">
-              {mode === 'login' ? 'Sign in to your account' : 'Create an account'}
+              {mode === 'login' ? 'Welcome back' : 'Create account'}
             </h2>
             <p className="login-card-sub">
-              {mode === 'login' ? 'Enter your credentials to continue' : 'Fill in the details below to get started'}
+              {mode === 'login' ? 'Enter your credentials to continue' : 'Fill in your details to get started'}
             </p>
           </div>
 
           <div className="login-tabs">
-            <button className={`login-tab ${mode === 'login' ? 'active' : ''}`} onClick={() => { setMode('login'); setError(''); }}>Sign In</button>
-            <button className={`login-tab ${mode === 'register' ? 'active' : ''}`} onClick={() => { setMode('register'); setError(''); }}>Register</button>
+            <button
+              className={`login-tab ${mode === 'login' ? 'active' : ''}`}
+              onClick={() => { setMode('login'); setError(''); }}
+            >
+              Sign In
+            </button>
+            <button
+              className={`login-tab ${mode === 'register' ? 'active' : ''}`}
+              onClick={() => { setMode('register'); setError(''); }}
+            >
+              Register
+            </button>
           </div>
 
           <div className="login-form">
@@ -79,7 +106,7 @@ export default function Login({ onLogin }) {
               <input
                 className="form-input"
                 type="text"
-                placeholder="Enter your username"
+                placeholder="your_username"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
                 onKeyDown={handleKey}
@@ -90,7 +117,7 @@ export default function Login({ onLogin }) {
               <input
                 className="form-input"
                 type="password"
-                placeholder="Enter your password"
+                placeholder="••••••••"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 onKeyDown={handleKey}

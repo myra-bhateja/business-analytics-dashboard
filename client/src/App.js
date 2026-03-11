@@ -10,11 +10,11 @@ import DataEditor from './components/DataEditor';
 import './App.css';
 
 const NAV_ITEMS = [
-  { id: 'charts', label: 'Charts', icon: '📊' },
-  { id: 'upload', label: 'Upload', icon: '📁' },
-  { id: 'editor', label: 'Edit Data', icon: '✏️' },
-  { id: 'insights', label: 'AI Insights', icon: '🤖' },
-  { id: 'chat', label: 'AI Chat', icon: '💬' },
+  { id: 'charts', label: 'Charts' },
+  { id: 'upload', label: 'Upload' },
+  { id: 'editor', label: 'Edit Data' },
+  { id: 'insights', label: 'AI Insights' },
+  { id: 'chat', label: 'AI Chat' },
 ];
 
 function App() {
@@ -46,20 +46,20 @@ function App() {
         <div className="sidebar-header">
           <div className="logo-mark">BA</div>
           <div>
-            <div className="logo-title">Business Analytics</div>
-            <div className="logo-sub">Enterprise Dashboard</div>
+            <div className="logo-title">Analytics</div>
+            <div className="logo-sub">Dashboard</div>
           </div>
         </div>
 
         <nav className="nav">
+          <div className="nav-section-label">Navigation</div>
           {NAV_ITEMS.map(item => (
             <button
               key={item.id}
               className={`nav-item ${activeTab === item.id ? 'active' : ''}`}
               onClick={() => setActiveTab(item.id)}
             >
-              <span className="nav-icon">{item.icon}</span>
-              <span>{item.label}</span>
+              {item.label}
             </button>
           ))}
         </nav>
@@ -72,7 +72,7 @@ function App() {
               <div className="user-role">Analyst</div>
             </div>
           </div>
-          <button className="logout-btn" onClick={handleLogout} title="Sign out">↪</button>
+          <button className="logout-btn" onClick={handleLogout}>Exit</button>
         </div>
       </aside>
 
@@ -86,7 +86,7 @@ function App() {
           </div>
           <div className="topbar-right">
             <div className="date-badge">
-              {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
+              {new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}
             </div>
           </div>
         </header>
