@@ -14,15 +14,23 @@ import uploadRoutes from "./routes/upload.js";
 import aiRoutes from "./routes/ai.js";
 import chatRoutes from "./routes/chat.js";
 
+connectMongo()
+
+import connectMongo from './mongo.js'
+import authRoutes from './routes/auth.routes.js'
+
+
 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
 
+
 // ROUTES
 app.use('/api/companies', companyRoutes)
 app.use('/api/sales', salesRoutes)
+app.use('/api/auth', authRoutes)
 
 app.use("/api/analytics", analyticsRoutes)
 //app.use("/api/dashboard", dashboardRoutes)
