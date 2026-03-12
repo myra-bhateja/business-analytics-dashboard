@@ -133,6 +133,10 @@ export default function Login({ onLogin }) {
             >
               {loading ? 'Please wait...' : mode === 'login' ? 'Sign In' : 'Create Account'}
             </button>
+
+            <div className="login-disclaimer">
+              Sometimes the server may take up to 60 seconds to wake up. Thank you for your patience.
+            </div>
           </div>
         </div>
       </div>

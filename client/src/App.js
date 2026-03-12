@@ -7,6 +7,7 @@ import TopProducts from './components/TopProducts';
 import AIInsights from './components/AIInsights';
 import AIChat from './components/AIChat';
 import DataEditor from './components/DataEditor';
+import About from './components/About';
 import './App.css';
 
 const NAV_ITEMS = [
@@ -15,6 +16,7 @@ const NAV_ITEMS = [
   { id: 'editor', label: 'Edit Data' },
   { id: 'insights', label: 'AI Insights' },
   { id: 'chat', label: 'AI Chat' },
+  { id: 'about', label: 'About' },
 ];
 
 function App() {
@@ -103,6 +105,7 @@ function App() {
           {activeTab === 'editor' && <DataEditor onDataChange={handleDataChange} />}
           {activeTab === 'insights' && <AIInsights key={`insights-${refreshKey}`} />}
           {activeTab === 'chat' && <AIChat />}
+          {activeTab === 'about' && <About />}
         </div>
       </main>
     </div>

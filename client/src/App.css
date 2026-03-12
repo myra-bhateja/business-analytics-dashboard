@@ -852,3 +852,115 @@ tr:hover td { background: var(--surface2); }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border2); }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+
+/* ─── LOGIN DISCLAIMER ─── */
+.login-disclaimer {
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--text-muted);
+  text-align: center;
+  padding: 10px 0 0;
+  line-height: 1.6;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+
+/* ─── ABOUT PAGE ─── */
+.about-container {
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.about-section {
+  padding: 28px 0;
+}
+
+.about-divider {
+  height: 1px;
+  background: var(--border);
+}
+
+.about-label {
+  font-size: 10px;
+  font-family: var(--mono);
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.about-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.3px;
+  margin-bottom: 10px;
+}
+
+.about-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-family: var(--mono);
+}
+
+.stack-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+}
+
+.stack-item {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+
+.stack-item:last-child { border-bottom: none; }
+.stack-item:hover { background: var(--surface2); }
+
+.stack-layer {
+  padding: 12px 16px;
+  font-size: 11px;
+  font-family: var(--mono);
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-right: 1px solid var(--border);
+}
+
+.stack-detail {
+  padding: 12px 16px;
+  font-size: 13px;
+  font-family: var(--mono);
+  color: var(--text);
+}
+
+.about-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+  letter-spacing: -0.2px;
+}
+
+.about-email {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--accent);
+  font-family: var(--mono);
+}
+
+.about-bio {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-family: var(--mono);
+}
