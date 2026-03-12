@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
-const API = 'http://localhost:5000';
+const API = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 const COLORS = ['#43e97b', '#6c63ff', '#ff6584', '#f7971e', '#a18cd1'];
 
 const CustomTooltip = ({ active, payload, label }) => {
