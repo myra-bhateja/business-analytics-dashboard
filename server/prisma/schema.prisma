@@ -1,21 +1,10 @@
-generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native", "linux-musl"]
-}
-
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-
-model Company {
-  id        Int      @id @default(autoincrement())
-  name      String
-  industry  String
-  revenue   Float
-  createdAt DateTime @default(now())
+generator client {
+  provider = "prisma-client-js"
 }
 
 model SalesRecord {
@@ -24,5 +13,13 @@ model SalesRecord {
   product  String
   amount   Float
   quantity Int      @default(0)
-  saleDate DateTime
+  saleDate DateTime @map("saleDate")
+}
+
+model Company {
+  id        Int      @id @default(autoincrement())
+  name      String
+  industry  String
+  revenue   Float
+  createdAt DateTime @default(now()) @map("createdAt")
 }
