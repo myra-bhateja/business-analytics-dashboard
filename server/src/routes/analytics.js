@@ -3,7 +3,10 @@ import prisma from "../prisma.js";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const router = express.Router();
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+console.log("GEMINI KEY AT START:", process.env.GEMINI_API_KEY);
+
+
 
 /* -----------------------------
    1. SALES BY REGION
@@ -74,6 +77,10 @@ router.get("/top-products", async (req, res) => {
 
 router.get("/insights", async (req, res) => {
   try {
+    console.log("GEMINI KEY:", process.env.GEMINI_API_KEY);
+
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
     const salesData = await prisma.salesRecord.findMany();
 
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
