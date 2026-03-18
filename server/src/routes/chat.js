@@ -10,7 +10,7 @@ router.post("/chat", async (req, res) => {
     const userQuestion = req.body.question;
     const salesData = await prisma.salesRecord.findMany();
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
     const prompt = `
 You are a business analytics assistant.

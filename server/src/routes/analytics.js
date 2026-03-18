@@ -6,7 +6,18 @@ const router = express.Router();
 
 console.log("GEMINI KEY AT START:", process.env.GEMINI_API_KEY);
 
+router.get("/list-models", async (req, res) => {
+  try {
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
+    const models = await genAI.listModels();
+
+    res.json(models);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to list models" });
+  }
+});
 
 /* -----------------------------
    1. SALES BY REGION
@@ -83,7 +94,7 @@ router.get("/insights", async (req, res) => {
 
     const salesData = await prisma.salesRecord.findMany();
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest"});
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro"});
 
     const prompt = `
 You are a business analytics expert.
