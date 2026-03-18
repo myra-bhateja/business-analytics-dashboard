@@ -9,7 +9,7 @@ router.get("/insights", async (req, res) => {
   try {
     const sales = await prisma.salesRecord.findMany();
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const prompt = `
 Analyze this sales data and give 3 business insights:

@@ -83,7 +83,7 @@ router.get("/insights", async (req, res) => {
 
     const salesData = await prisma.salesRecord.findMany();
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
     const prompt = `
 You are a business analytics expert.
