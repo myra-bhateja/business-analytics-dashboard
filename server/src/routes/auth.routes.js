@@ -5,6 +5,17 @@ import User from '../models/User.js';
 
 const router = express.Router();
 
+
+
+router.get("/ping", async (req, res) => {
+  try {
+    const count = await User.countDocuments();
+    res.json({ ok: true, userCount: count });
+  } catch (e) {
+    res.status(500).json({ ok: false, error: e.message });
+  }
+});
+
 // REGISTER
 router.post('/register', async (req, res) => {
   try {

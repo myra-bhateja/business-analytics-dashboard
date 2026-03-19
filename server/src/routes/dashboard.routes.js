@@ -1,35 +1,32 @@
 import express from "express";
-import prisma from "../prisma.js";
+import SalesRecord from "../models/SalesRecord.js";
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const totalSales = await prisma.salesRecord.aggregate({
-      _sum: { amount: true }
-    });
-
-    const totalOrders = await prisma.salesRecord.count();
-
-    const salesByRegion = await prisma.salesRecord.groupBy({
-      by: ["region"],
-      _sum: { amount: true }
-    });
-
-    const topProducts = await prisma.salesRecord.groupBy({
-      by: ["product"],
-      _sum: { quantity: true },
-      orderBy: {
-        _sum: { quantity: "desc" }
-      },
-      take: 5
-    });
+    const [totalSalesAgg, totalOrders, salesByRegion, topProducts] = await Promise.all([
+      SalesRecord.aggregate([
+        { $group: { _id: null, total: { $sum: "$amount" } } },
+      ]),
+      SalesRecord.countDocuments(),
+      SalesRecord.aggregate([
+        { $group: { _id: "$region", total: { $sum: "$amount" } } },
+        { $project: { region: "$_id", total: 1, _id: 0 } },
+      ]),
+      SalesRecord.aggregate([
+        { $group: { _id: "$product", totalQuantity: { $sum: "$quantity" } } },
+        { $sort: { totalQuantity: -1 } },
+        { $limit: 5 },
+        { $project: { product: "$_id", totalQuantity: 1, _id: 0 } },
+      ]),
+    ]);
 
     res.json({
-      totalSales: totalSales._sum.amount || 0,
+      totalSales: totalSalesAgg[0]?.total || 0,
       totalOrders,
       salesByRegion,
-      topProducts
+      topProducts,
     });
 
   } catch (error) {
