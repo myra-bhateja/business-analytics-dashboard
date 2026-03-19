@@ -16,12 +16,11 @@ export default function About() {
         <div className="stack-grid">
           {[
             { layer: 'Frontend', detail: 'React, Recharts, Axios — deployed on Vercel' },
-            { layer: 'Backend', detail: 'Node.js, Express — deployed on Render' },
-            { layer: 'Databases', detail: 'PostgreSQL via Supabase (sales data), MongoDB Atlas (authentication)' },
-            { layer: 'ORM', detail: 'Prisma' },
-            { layer: 'AI', detail: 'Google Gemini 2.0 Flash' },
+            { layer: 'Backend', detail: 'Node.js, Express — deployed on Render (Docker)' },
+            { layer: 'Database', detail: 'MongoDB Atlas — sales data, authentication, and all storage' },
+            { layer: 'AI', detail: 'Google Gemini 2.5 Flash with 1.5 Flash fallback' },
             { layer: 'Auth', detail: 'JWT tokens with bcrypt password hashing' },
-            { layer: 'Infrastructure', detail: 'Docker Compose (local development)' },
+            { layer: 'Infrastructure', detail: 'Docker (Render deployment)' },
           ].map(item => (
             <div key={item.layer} className="stack-item">
               <div className="stack-layer">{item.layer}</div>

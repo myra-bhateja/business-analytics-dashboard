@@ -27,10 +27,10 @@ export default function AIChat() {
     setMessages(prev => [...prev, { role: 'user', text: q }]);
     setLoading(true);
     try {
-      const res = await axios.post(`${API}/api/ai/chat`, { question: q });
+      const res = await axios.post(`${API}/api/chat`, { question: q });
       setMessages(prev => [...prev, { role: 'ai', text: res.data.answer }]);
     } catch {
-      setMessages(prev => [...prev, { role: 'ai', text: '⚠️ Failed to get a response. Check your AI API key.' }]);
+      setMessages(prev => [...prev, { role: 'ai', text: '⚠️ Failed to get a response. Please try again.' }]);
     } finally {
       setLoading(false);
     }
